@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/aop
+      http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/beans 
+      http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="knight" class="top.jinhaplus.model.knight.BraveKnight">
+        <constructor-arg index="0" ref="quest"/>
+        <constructor-arg index="1" ref="minstrel"/>
+
+    </bean>
+
+    <bean id="quest" class="top.jinhaplus.model.quest.SlayDragonQuest">
+        <constructor-arg value="#{T(System).out}"/>
+    </bean>
+
+    <bean id="minstrel" class="top.jinhaplus.model.minstrel.Minstrel">
+        <constructor-arg value="#{T(System).out}"/>
+    </bean>
+
+</beans>
