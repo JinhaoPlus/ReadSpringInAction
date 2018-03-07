@@ -10,6 +10,9 @@
     <version>1.0</version>
     <modules>
         <module>Chap1_StartSpring</module>
+        <module>Chap2_ConstructBean_autoconfig</module>
+        <module>Chap2_ConstructBean_javaconfig</module>
+        <module>Chap2_ConstructBean_xmlconfig</module>
     </modules>
 
     <properties>

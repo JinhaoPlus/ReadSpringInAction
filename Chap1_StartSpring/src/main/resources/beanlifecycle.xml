@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
       http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="dragonSlayKnight" class="top.jinhaplus.beanlifecycle.BeanWithAllLifeCycle"
+    <bean id="beanWithAllLifeCycle" class="top.jinhaplus.beanlifecycle.BeanWithAllLifeCycle"
           init-method="initBean"
           destroy-method="destroyBean">
         <constructor-arg name="propt" value="AAA"/>
