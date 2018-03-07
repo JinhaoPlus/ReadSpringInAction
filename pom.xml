@@ -13,6 +13,7 @@
         <module>Chap2_ConstructBean_autoconfig</module>
         <module>Chap2_ConstructBean_javaconfig</module>
         <module>Chap2_ConstructBean_xmlconfig</module>
+        <module>Chap2_ConstructBean_mixedconfig</module>
     </modules>
 
     <properties>
