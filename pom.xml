@@ -10,10 +10,15 @@
     <version>1.0</version>
     <modules>
         <module>Chap1_StartSpring</module>
-        <module>Chap2_ConstructBean_autoconfig</module>
-        <module>Chap2_ConstructBean_javaconfig</module>
-        <module>Chap2_ConstructBean_xmlconfig</module>
-        <module>Chap2_ConstructBean_mixedconfig</module>
+        <module>Chap2_WiringBean_xmlconfig</module>
+        <module>Chap2_WiringBean_javaconfig</module>
+        <module>Chap2_WiringBean_autoconfig</module>
+        <module>Chap2_WiringBean_mixedconfig</module>
+        <module>Chap3_AdvancedWiringBean_profiles</module>
+        <module>Chap3_AdvancedWiringBean_conditionalwiring</module>
+        <module>Chap3_AdvancedWiringBean_wiringambiguity</module>
+        <module>Chap3_AdvancedWiringBean_beanscope</module>
+        <module>Chap3_AdvancedWiringBean_sessionscope</module>
     </modules>
 
     <properties>
@@ -50,6 +55,21 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
         <dependency>

@@ -9,7 +9,14 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>Chap2_ConstructBean_mixedconfig</artifactId>
+    <artifactId>Chap3_AdvancedWiringBean_profiles</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.182</version>
+        </dependency>
+    </dependencies>
 
 </project>
