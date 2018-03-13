@@ -6,9 +6,11 @@ import top.jinhaoplus.model.disc.CompactDisc;
 import top.jinhaoplus.model.disc.SgtPeppers;
 import top.jinhaoplus.model.player.CDPlayer;
 
+// @Configuration相当于xmlconfig中的<beans>
 @Configuration
 public class CDPlayerConfig {
 
+    // @Bean相当于xmlconfig中的<bean>
     // @Bean用于方法创建bean并注入进Spring容器中
     @Bean
     //可指定注入到容器中的bean名称 @Bean(name="sgtPeppersDisc")

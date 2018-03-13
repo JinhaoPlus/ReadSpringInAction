@@ -19,6 +19,7 @@
         <module>Chap3_AdvancedWiringBean_wiringambiguity</module>
         <module>Chap3_AdvancedWiringBean_beanscope</module>
         <module>Chap3_AdvancedWiringBean_sessionscope</module>
+        <module>Chap3_AdvancedWiringBean_injectvalue</module>
     </modules>
 
     <properties>
