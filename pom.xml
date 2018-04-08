@@ -20,6 +20,7 @@
         <module>Chap3_AdvancedWiringBean_beanscope</module>
         <module>Chap3_AdvancedWiringBean_sessionscope</module>
         <module>Chap3_AdvancedWiringBean_injectvalue</module>
+        <module>Chap4_AOP_javaconfig</module>
     </modules>
 
     <properties>

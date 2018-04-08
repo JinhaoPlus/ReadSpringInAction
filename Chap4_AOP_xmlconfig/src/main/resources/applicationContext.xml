@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/aop
+      http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/beans 
+      http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="top.jinhaoplus"/>
+
+    <aop:aspectj-autoproxy/>
+
+    <bean id="concert" class="top.jinhaoplus.concert.Concert"/>
+
+    <bean id="audienceAspect" class="top.jinhaoplus.AudienceAspect"/>
+
+    <aop:config>
+        <!--AOP切面的ref是audienceAspect，即指定定义切面的类注入的对象-->
+        <aop:aspect ref="audienceAspect">
+            <!--定义切点-->
+            <aop:pointcut id="performance"
+                          expression="execution(* top.jinhaoplus.concert.Performance.perform(..))"/>
+
+            <!--定义增强在切面中的方法是什么-->
+            <aop:before pointcut-ref="performance"
+                        method="silenceCellphones"/>
+
+            <aop:after pointcut-ref="performance"
+                       method="applause"/>
+
+            <aop:after-returning pointcut-ref="performance"
+                       method="standup"/>
+
+            <aop:after-throwing pointcut-ref="performance"
+                                 method="demandRefund"/>
+
+            <aop:around pointcut-ref="performance"
+                                method="watchPerformace"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>

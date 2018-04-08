@@ -7,17 +7,17 @@
 		http://www.springframework.org/schema/beans 
       http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="knight" class="top.jinhaplus.model.knight.BraveKnight">
+    <bean id="knight" class="top.jinhaoplus.model.knight.BraveKnight">
         <constructor-arg index="0" ref="quest"/>
         <constructor-arg index="1" ref="minstrel"/>
 
     </bean>
 
-    <bean id="quest" class="top.jinhaplus.model.quest.SlayDragonQuest">
+    <bean id="quest" class="top.jinhaoplus.model.quest.SlayDragonQuest">
         <constructor-arg value="#{T(System).out}"/>
     </bean>
 
-    <bean id="minstrel" class="top.jinhaplus.model.minstrel.Minstrel">
+    <bean id="minstrel" class="top.jinhaoplus.model.minstrel.Minstrel">
         <constructor-arg value="#{T(System).out}"/>
     </bean>
 
