@@ -14,7 +14,11 @@
 
     <bean id="concert" class="top.jinhaoplus.concert.Concert"/>
 
-    <bean id="audienceAspect" class="top.jinhaoplus.AudienceAspect"/>
+    <bean id="audienceAspect" class="top.jinhaoplus.aspect.AudienceAspect"/>
+
+    <bean id="yardAspect" class="top.jinhaoplus.aspect.YardAspect"/>
+
+    <bean id="encoreIntroducerAspect" class="top.jinhaoplus.aspect.EncoreIntroducerAspect"/>
 
     <aop:config>
         <!--AOP切面的ref是audienceAspect，即指定定义切面的类注入的对象-->
@@ -31,13 +35,32 @@
                        method="applause"/>
 
             <aop:after-returning pointcut-ref="performance"
-                       method="standup"/>
+                                 method="standup"/>
 
             <aop:after-throwing pointcut-ref="performance"
-                                 method="demandRefund"/>
+                                method="demandRefund"/>
 
             <aop:around pointcut-ref="performance"
-                                method="watchPerformace"/>
+                        method="watchPerformace"/>
+        </aop:aspect>
+
+        <aop:aspect ref="yardAspect">
+
+            <!--&& 在xml中不能使用因此要使用and-->
+            <aop:pointcut id="prepare"
+                          expression="execution(* top.jinhaoplus.concert.Performance.prepare(String)) and args(showname)"/>
+
+            <aop:before pointcut-ref="prepare"
+                        method="cleanTheYard"/>
+
+            <aop:before pointcut-ref="prepare"
+                        method="arrangeFacility"/>
+        </aop:aspect>
+
+        <aop:aspect>
+            <aop:declare-parents types-matching="top.jinhaoplus.concert.Performance+"
+                                 implement-interface="top.jinhaoplus.concert.Encoreable"
+                                 default-impl="top.jinhaoplus.concert.DefaultEncoreable"/>
         </aop:aspect>
     </aop:config>
 

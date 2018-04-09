@@ -1,4 +1,4 @@
-package top.jinhaoplus;
+package top.jinhaoplus.aspect;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 

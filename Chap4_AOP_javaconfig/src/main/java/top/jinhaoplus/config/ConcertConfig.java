@@ -4,7 +4,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import top.jinhaoplus.AudienceAspect;
+import top.jinhaoplus.aspect.AudienceAspect;
+import top.jinhaoplus.aspect.EncoreIntroducerAspect;
+import top.jinhaoplus.aspect.YardAspect;
 import top.jinhaoplus.concert.Concert;
 import top.jinhaoplus.concert.Performance;
 
@@ -20,7 +22,17 @@ public class ConcertConfig {
     }
 
     @Bean
-    public AudienceAspect audience() {
+    public AudienceAspect audienceAspect() {
         return new AudienceAspect();
+    }
+
+    @Bean
+    public YardAspect yardAspect() {
+        return new YardAspect();
+    }
+
+    @Bean
+    public EncoreIntroducerAspect encoreIntroducerAspect() {
+        return new EncoreIntroducerAspect();
     }
 }
