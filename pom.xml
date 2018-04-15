@@ -10,17 +10,18 @@
     <version>1.0</version>
     <modules>
         <module>Chap1_StartSpring</module>
-        <module>Chap2_WiringBean_xmlconfig</module>
-        <module>Chap2_WiringBean_javaconfig</module>
-        <module>Chap2_WiringBean_autoconfig</module>
-        <module>Chap2_WiringBean_mixedconfig</module>
-        <module>Chap3_AdvancedWiringBean_profiles</module>
-        <module>Chap3_AdvancedWiringBean_conditionalwiring</module>
-        <module>Chap3_AdvancedWiringBean_wiringambiguity</module>
-        <module>Chap3_AdvancedWiringBean_beanscope</module>
-        <module>Chap3_AdvancedWiringBean_sessionscope</module>
-        <module>Chap3_AdvancedWiringBean_injectvalue</module>
-        <module>Chap4_AOP_javaconfig</module>
+        <module>Chap2.1_WiringBean_xmlconfig</module>
+        <module>Chap2.2_WiringBean_javaconfig</module>
+        <module>Chap2.3_WiringBean_autoconfig</module>
+        <module>Chap2.4_WiringBean_mixedconfig</module>
+        <module>Chap3.1_AdvancedWiringBean_profiles</module>
+        <module>Chap3.2_AdvancedWiringBean_conditionalwiring</module>
+        <module>Chap3.3_AdvancedWiringBean_wiringambiguity</module>
+        <module>Chap3.4_AdvancedWiringBean_beanscope</module>
+        <module>Chap3.5_AdvancedWiringBean_sessionscope</module>
+        <module>Chap3.6_AdvancedWiringBean_injectvalue</module>
+        <module>Chap4.1_AOP_javaconfig</module>
+        <module>Chap4.2_AOP_xmlconfig</module>
     </modules>
 
     <properties>
