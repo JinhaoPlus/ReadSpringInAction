@@ -18,6 +18,8 @@
 
     <bean id="yardAspect" class="top.jinhaoplus.aspect.YardAspect"/>
 
+    <bean id="mediaAspect" class="top.jinhaoplus.aspect.MediaAspect"/>
+
     <bean id="encoreIntroducerAspect" class="top.jinhaoplus.aspect.EncoreIntroducerAspect"/>
 
     <aop:config>
@@ -55,6 +57,14 @@
 
             <aop:before pointcut-ref="prepare"
                         method="arrangeFacility"/>
+        </aop:aspect>
+
+        <aop:aspect ref="mediaAspect">
+
+            <aop:pointcut id="isOpen"
+                          expression="execution(* top.jinhaoplus.concert.Performance.isOpen(..))"/>
+            <aop:after-returning pointcut-ref="isOpen" method="mediaVisit" returning="open"/>
+
         </aop:aspect>
 
         <aop:aspect>

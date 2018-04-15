@@ -8,6 +8,11 @@ public class Concert implements Performance {
     }
 
     @Override
+    public boolean isOpen() {
+        return true;
+    }
+
+    @Override
     public void perform() {
         System.out.println("The Concert is performing!");
     }

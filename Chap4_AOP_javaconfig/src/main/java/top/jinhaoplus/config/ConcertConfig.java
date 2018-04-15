@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import top.jinhaoplus.aspect.AudienceAspect;
 import top.jinhaoplus.aspect.EncoreIntroducerAspect;
+import top.jinhaoplus.aspect.MediaAspect;
 import top.jinhaoplus.aspect.YardAspect;
 import top.jinhaoplus.concert.Concert;
 import top.jinhaoplus.concert.Performance;
@@ -29,6 +30,11 @@ public class ConcertConfig {
     @Bean
     public YardAspect yardAspect() {
         return new YardAspect();
+    }
+
+    @Bean
+    public MediaAspect mediaAspect() {
+        return new MediaAspect();
     }
 
     @Bean

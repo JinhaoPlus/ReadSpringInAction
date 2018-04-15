@@ -10,6 +10,8 @@ public class ConcertMain {
         Performance concert = applicationContext.getBean(Performance.class);
         concert.prepare("Holmes");
         System.out.println("--------------------");
+        concert.isOpen();
+        System.out.println("--------------------");
         concert.perform();
         System.out.println("--------------------");
         Encoreable encoreable = (Encoreable) concert;
