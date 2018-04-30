@@ -22,6 +22,7 @@
         <module>Chap3.6_AdvancedWiringBean_injectvalue</module>
         <module>Chap4.1_AOP_javaconfig</module>
         <module>Chap4.2_AOP_xmlconfig</module>
+        <module>Chap5_StartSpringWeb</module>
     </modules>
 
     <properties>
@@ -30,6 +31,18 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit-dep</artifactId>
+            <version>4.11</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>1.10.19</version>
+            <scope>test</scope>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
@@ -81,6 +94,13 @@
             <version>${spring.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.7</version>
+        </dependency>
+
     </dependencies>
 
     <build>
