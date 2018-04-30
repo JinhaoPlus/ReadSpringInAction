@@ -9,7 +9,6 @@
     <artifactId>Chap3.5_AdvancedWiringBean_sessionscope</artifactId>
     <packaging>war</packaging>
     <name>Chap3_AdvancedWiringBean_sessionscope Maven Webapp</name>
-    <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>

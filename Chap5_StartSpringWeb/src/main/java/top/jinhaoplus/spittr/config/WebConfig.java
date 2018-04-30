@@ -19,7 +19,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     /**
      * ViewResolver组件用以配置视图解析器
-     * InternalResourceViewResolver配置了根据视图名去查找视图文件的位置
+     * InternalResourceViewResolver将视图解析为Web应用的内部资源（一般是JSP），配置了根据视图名去查找视图文件的位置
      * 默认的ViewResolver是BeanNameViewResolver会查找beanID和视图名相同的实现了View的bean作为视图
      */
     @Bean
