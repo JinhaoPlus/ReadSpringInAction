@@ -1,13 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
-<html>
-<head>
-    <title>Spitter</title>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/style.css" />">
-</head>
-<body>
 <div class="spittleForm">
     <h1>Spit it out...</h1>
     <form method="POST" name="spittleForm">
@@ -33,10 +26,7 @@
     </ul>
     <c:if test="${fn:length(spittleList) gt 20}">
         <hr/>
-        <%--s:url用于创建url变量，其中的var属性保存的变量可被下文使用--%>
         <s:url value="/spittles?count=${nextCount}" var="more_url"/>
         <a href="${more_url}">Show more</a>
     </c:if>
 </div>
-</body>
-</html>

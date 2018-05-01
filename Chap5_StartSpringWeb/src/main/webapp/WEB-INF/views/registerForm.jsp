@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>Register</h1>
-
+<%--未配置表单提交action的url因此使用此页面的url进行提交--%>
 <form method="POST">
     First Name: <input type="text" name="firstName"/><br/>
     Last Name: <input type="text" name="lastName"/><br/>

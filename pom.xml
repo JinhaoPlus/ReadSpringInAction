@@ -24,6 +24,7 @@
         <module>Chap4.2_AOP_xmlconfig</module>
         <module>Chap5_StartSpringWeb</module>
         <module>Chap6.1_SpringWeb_renderingview_jsp</module>
+        <module>Chap6.2_SpringWeb_renderingview_tile</module>
     </modules>
 
     <properties>
