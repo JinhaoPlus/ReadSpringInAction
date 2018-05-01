@@ -111,6 +111,7 @@ public class SpittleController {
     // url路径传参和请求参数传参无优劣之分，但是url路径传参更符合Restful面向资源API的思想
 
 
+    // SpittleForm参数form中的各个字段将会由请求中的同名参数进行填充，这被称为参数同bean字段的自动绑定
     @RequestMapping(method = RequestMethod.POST)
     public String saveSpittle(SpittleForm form) throws Exception {
         spittleRepository.save(new Spittle(null, form.getMessage(), new Date(),

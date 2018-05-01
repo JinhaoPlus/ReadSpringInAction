@@ -23,6 +23,7 @@
         <module>Chap4.1_AOP_javaconfig</module>
         <module>Chap4.2_AOP_xmlconfig</module>
         <module>Chap5_StartSpringWeb</module>
+        <module>Chap6.1_SpringWeb_renderingview_jsp</module>
     </modules>
 
     <properties>
