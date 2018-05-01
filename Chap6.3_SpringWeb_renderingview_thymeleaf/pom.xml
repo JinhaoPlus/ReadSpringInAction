@@ -8,9 +8,9 @@
         <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>Chap6.2_SpringWeb_renderingview_tile</artifactId>
+    <artifactId>Chap6.3_SpringWeb_renderingview_thymeleaf</artifactId>
     <packaging>war</packaging>
-    <name>Chap6.2_SpringWeb_renderingview_tile Maven Webapp</name>
+    <name>Chap6.3_SpringWeb_renderingview_thymeleaf Maven Webapp</name>
     <dependencies>
         <dependency>
             <groupId>javax.validation</groupId>
@@ -47,26 +47,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.tiles</groupId>
-            <artifactId>tiles-core</artifactId>
-            <version>3.0.1</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.tiles</groupId>
-            <artifactId>tiles-jsp</artifactId>
-            <version>3.0.1</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf-spring4</artifactId>
+            <version>2.1.3.RELEASE</version>
         </dependency>
 
         <dependency>
@@ -75,22 +58,6 @@
             <version>1.4.182</version>
         </dependency>
 
-        <!--apache tiles依赖的日志门面是slf4j-->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.5</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.5</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>1.7.5</version>
-        </dependency>
 
     </dependencies>
 
