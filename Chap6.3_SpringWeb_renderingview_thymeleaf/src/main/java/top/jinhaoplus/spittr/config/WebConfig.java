@@ -20,6 +20,7 @@ import org.thymeleaf.templateresolver.TemplateResolver;
 @ComponentScan("top.jinhaoplus.spittr.web")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
+    // Thymeleaf是灵活原生的html模版引擎，和servlet标准是无耦合的，与强耦合于serlet标准的JSP在这点上是有优势的，同时原生的html编写方式可以做到一定程度的所写所得，web浏览器的可见性好
     // 使用Thymeleaf作为视图解析器
     @Bean
     public ViewResolver viewResolver(SpringTemplateEngine templateEngine) {

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app version="2.5"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+         http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+    <!--在Servlet 3.0以前的servlet标准中未引入WebApplicationContextInitializer，仍然使用java进行配置，应用上下文的配置需要以配置类的形式引入 -->
+
+    <context-param>
+        <param-name>contextClass</param-name>
+        <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+    </context-param>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>top.jinhaoplus.spittr.config.RootConfig</param-value>
+    </context-param>
+    <!--ContextLoaderListener会初始化根上下文，上下文类型在contextClass中定义，配置类在contextConfigLocation中定义-->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <!--DispatcherServlet会初始化应用上下文-->
+    <servlet>
+        <servlet-name>appServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!--上下文类型在contextClass中定义，配置类在contextConfigLocation中定义-->
+        <init-param>
+            <param-name>contextClass</param-name>
+            <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+        </init-param>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>top.jinhaoplus.spittr.config.WebConfig</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>appServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+</web-app>
