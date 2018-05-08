@@ -28,6 +28,7 @@
         <module>Chap6.3_SpringWeb_renderingview_thymeleaf</module>
         <module>Chap7.1_SpringWeb_xmlconfig</module>
         <module>Chap7.2_SpringWeb_javaconfig</module>
+        <module>Chap7.3_SpringWeb_advanced</module>
     </modules>
 
     <properties>
