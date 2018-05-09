@@ -45,9 +45,11 @@ public class SpitterWebInitializer extends AbstractAnnotationConfigDispatcherSer
 
     // 等同于在上述自添加DispatcherServlet到servlet上下文时的
     // appServlet.setMultipartConfig(new MultipartConfigElement("/tmp/spittr/uploads"));
+    // MultipartConfigElement的location参数指定了multipart的解析文件的上传路径
     @Override
     protected void customizeRegistration(ServletRegistration.Dynamic registration) {
         registration.setMultipartConfig(
-                new MultipartConfigElement("/Users/jinhaoplus/Desktop", 2097152, 4194304, 0));
+                new MultipartConfigElement("/tmp/spittr/uploads", 2097152, 4194304, 0));
+
     }
 }
