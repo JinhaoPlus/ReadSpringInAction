@@ -10,7 +10,8 @@
 </head>
 <body>
 <h1>Register</h1>
-<%--表单标签库在渲染页面元素的同时还会将model中的对象属性填充到表单中去--%>
+<%--commandName和path的作用是如下的双向绑定--%>
+<%--表单标签库在渲染页面元素的同时会将commandName指定的model中对象的同名属性填充到表单中去--%>
 <%--path中的属性字段会在渲染时填充到表单元素的model对象的同名属性中去--%>
 <sf:form method="POST" commandName="spitter">
     <%--将所有path的属性的校验错误提示都集中展示到一个div中去，设置错误提示的样式为.errors--%>

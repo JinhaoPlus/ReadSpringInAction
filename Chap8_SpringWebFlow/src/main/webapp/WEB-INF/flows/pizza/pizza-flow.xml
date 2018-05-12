@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--开始流程-->
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+  http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+    <!--流程和实现分离可以快速梳理复杂流程程序中的工序、步骤，避免复杂的流程完全依靠业务代码中的分散分布带来的逻辑设计困难-->
+
+    <!--var创建新的Order实例并将其命名为order-->
+    <var name="order" class="top.jinhaoplus.pizza.domain.Order"/>
+
+    <!--可以认为子流程subflow-state是一系列流程细节的封装，流程细节和子流程相当于指令和函数的关系
+        如果直接定义出来流程细节将会导致流程文件繁杂而无主脉，是封装抽象思想的体现
+        当然简单的流程也可以全都写在一个大流程里，见/WEB-INF/pizza-singleflow/pizza-flow.xml-->
+
+
+    <!-- Customer -->
+    <!--执行子流程customer，即客户子流程，其中会单独定义客户子流程的细节-->
+    <subflow-state id="customer" subflow="pizza/customer">
+        <!--给子流程customer输入上面定义的变量order，并将其参数名设置为order（即子流程中的名字）-->
+        <input name="order" value="order"/>
+        <!--如果流程中触发了customerReady事件，则流程流向id为order的流程-->
+        <transition on="customerReady" to="order"/>
+    </subflow-state>
+
+    <!-- Order -->
+    <!--执行子流程order，即订单子流程，其中会单独定义订单子流程的细节-->
+    <subflow-state id="order" subflow="pizza/order">
+        <!--给子流程order输入上面定义的变量order，并将其参数名设置为order-->
+        <input name="order" value="order"/>
+        <!--如果流程中触发了orderCreated事件，则流程流向id为payment的流程-->
+        <transition on="orderCreated" to="payment"/>
+    </subflow-state>
+
+    <!-- Payment -->
+    <!--执行子流程payment，即支付子流程，其中会单独定义支付子流程的细节-->
+    <subflow-state id="payment" subflow="pizza/payment">
+        <input name="order" value="order"/>
+        <!--如果流程中触发了paymentTaken事件，则流程流向id为saveOrder的流程-->
+        <transition on="paymentTaken" to="saveOrder"/>
+    </subflow-state>
+
+    <!--执行行为流程saveOrder，即订单存储流程，其中会直接定义订单存储流程的行为-->
+    <action-state id="saveOrder">
+        <!--执行表达式，调用存储客户的方法-->
+        <evaluate expression="pizzaFlowActions.saveOrder(order)"/>
+        <!--流程直接流向id为thankYou的流程-->
+        <transition to="thankYou"/>
+    </action-state>
+
+    <!--执行视图流程thankYou，即感谢客户流程-->
+    <view-state id="thankYou">
+        <!--流程直接流向id为endState的流程-->
+        <transition to="endState"/>
+    </view-state>
+
+    <!--执行视图流程endState，即结束流程-->
+    <!-- End state -->
+    <end-state id="endState"/>
+
+    <!--全局流程流向定义-->
+    <global-transitions>
+        <!--无论哪个流程触发了cancel事件都会流向id为endState的流程-->
+        <transition on="cancel" to="endState"/>
+    </global-transitions>
+</flow>

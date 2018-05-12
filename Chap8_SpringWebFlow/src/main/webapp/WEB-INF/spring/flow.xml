@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:flow="http://www.springframework.org/schema/webflow-config"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/webflow-config
+   http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.3.xsd
+   http://www.springframework.org/schema/beans 
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/context 
+   http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <context:component-scan base-package="top.jinhaoplus.pizza.flow"/>
+
+    <!--装配流程执行器：创建一个流程执行器实例，它负责创建和执行流程-->
+    <!--当流程暂停时（如展示视图的时候），会在用户执行完操作后恢复流程-->
+    <flow:flow-executor id="flowExecutor"/>
+
+    <!--配置流程注册表：加载流程定义并让流程执行器创建和执行这些流程-->
+    <!--base-path指定了流程定义配置文件的基地址，流程注册表会去这个地方根据pattern寻找流程定义配置文件-->
+    <flow:flow-registry id="flowRegistry" base-path="/WEB-INF/flows">
+        <flow:flow-location-pattern value="/**/*-flow.xml"/>
+    </flow:flow-registry>
+
+    <!--流程请求映射：类似于MVC中的DispatcherServlet，FlowHandlerMapping会将流程请求映射到流程处理器上-->
+    <!--url是/pizza的流程将被映射到id为pizza的流程上-->
+    <!--id为pizza的意思是flow的路径在/pizza下，如果结合上面的base-path则完整路径为/WEB-INF/flows/pizza/*-flow.xml-->
+    <!--id为pizza/customer的意思是flow的路径在/pizza下，如果结合上面的base-path则完整路径为/WEB-INF/flows/pizza/customer/*-flow.xml-->
+    <bean class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
+        <property name="flowRegistry" ref="flowRegistry"/>
+    </bean>
+
+    <!--流程处理适配器：类似于MVC中的Controller，装配流程执行器实际执行流程-->
+    <bean class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
+        <property name="flowExecutor" ref="flowExecutor"/>
+    </bean>
+
+</beans>

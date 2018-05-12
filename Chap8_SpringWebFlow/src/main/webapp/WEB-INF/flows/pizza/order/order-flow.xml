@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+  http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+    <!--流程的输入项是总流程传入的名为order的变量-->
+    <input name="order" required="true"/>
+
+    <!-- Order -->
+    <!--视图流程showOrder，即订单展示流程-->
+    <view-state id="showOrder">
+        <on-entry>
+            <!--set通过执行value属性中的表达式创建出的变量set到flowScope域的pizza对象中-->
+            <set name="order.total" value="pricingEngine.calculateOrderTotal(order)"/>
+        </on-entry>
+        <!--如果流程中触发了createPizza事件，则流程流向id为createPizza的流程-->
+        <transition on="createPizza" to="createPizza"/>
+        <!--如果流程中触发了checkout事件，则流程流向id为orderCreated的流程-->
+        <transition on="checkout" to="orderCreated"/>
+        <!--如果流程中触发了cancel事件，则流程流向id为cancel的流程-->
+        <transition on="cancel" to="cancel"/>
+    </view-state>
+
+    <!--视图流程createPizza，即披萨新增流程-->
+    <view-state id="createPizza" model="flowScope.pizza">
+        <!--on-entry用于指定一进入该state在执行其他操作前首先需要执行的操作-->
+        <on-entry>
+            <!--set通过执行value属性中的表达式创建出的变量set到flowScope域的pizza对象中-->
+            <set name="flowScope.pizza" value="new top.jinhaoplus.pizza.domain.Pizza()"/>
+            <!--执行表达式，将SpEL表达式计算出的披萨顶馅选项放入到viewScope域的toppingsList对象中-->
+            <evaluate result="viewScope.toppingsList"
+                      expression="T(top.jinhaoplus.pizza.domain.enums.Topping).asList()"/>
+        </on-entry>
+        <!--如果流程中触发了addPizza事件，则流程流向id为showOrder的流程-->
+        <transition on="addPizza" to="showOrder">
+            <!--执行表达式，将flowScope域的pizza对象添加到order变量中-->
+            <evaluate expression="order.addPizza(flowScope.pizza)"/>
+        </transition>
+        <!--如果流程中触发了cancel事件，则流程流向id为showOrder的流程-->
+        <transition on="cancel" to="showOrder"/>
+    </view-state>
+
+
+    <!-- End state -->
+    <!--结束流程cancel，即客户取消流程-->
+    <end-state id="cancel"/>
+    <!--结束流程orderCreated，即订单就绪流程-->
+    <end-state id="orderCreated"/>
+</flow>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+  http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+    <!--流程的输入项是总流程传入的名为order的变量-->
+    <input name="order" required="true"/>
+
+    <!--视图流程takePayment，即费用支付流程，传入的model是flowScope域中的paymentDetails对象-->
+    <view-state id="takePayment" model="flowScope.paymentDetails">
+        <on-entry>
+            <!--创建PaymentDetails对象set到flowScope域中-->
+            <set name="flowScope.paymentDetails" value="new top.jinhaoplus.pizza.domain.PaymentDetails()"/>
+            <!--计算表达式将支付方式设置到viewScope域中-->
+            <evaluate result="viewScope.paymentTypeList"
+                      expression="T(top.jinhaoplus.pizza.domain.enums.PaymentType).asList()"/>
+        </on-entry>
+        <!--如果流程中触发了paymentSubmitted事件，则流程流向id为verifyPayment的流程-->
+        <transition on="paymentSubmitted" to="verifyPayment"/>
+        <!--如果流程中触发了cancel事件，则流程流向id为cancel的流程-->
+        <transition on="cancel" to="cancel"/>
+    </view-state>
+
+    <!--行为流程verifyPayment，即确认支付流程-->
+    <action-state id="verifyPayment">
+        <!--计算表达式，调用确认支付的方法，将计算得到的支付结果设置到order变量的payment字段中-->
+        <evaluate result="order.payment" expression="pizzaFlowActions.verifyPayment(flowScope.paymentDetails)"/>
+        <!--流程流向id为paymentTaken的流程-->
+        <transition to="paymentTaken"/>
+    </action-state>
+
+    <!-- End state -->
+    <!--结束流程cancel，即客户取消流程-->
+    <end-state id="cancel"/>
+    <!--结束流程cancel，即支付完成流程-->
+    <end-state id="paymentTaken"/>
+</flow>

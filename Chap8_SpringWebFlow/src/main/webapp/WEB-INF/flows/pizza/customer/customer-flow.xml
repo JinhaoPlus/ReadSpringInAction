@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--执行客户子流程-->
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+  http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+    <!--流程的输入项是总流程传入的名为order的变量-->
+    <input name="order" required="true"/>
+
+    <!-- Customer -->
+    <!--视图流程welcome，即欢迎流程-->
+    <!--视图流程的id是其逻辑模版地址，即id="welcome"意味着模版是welcome-->
+    <view-state id="welcome">
+        <!--如果流程中触发了phoneEntered事件，则流程流向id为lookupCustomer的流程-->
+        <transition on="phoneEntered" to="lookupCustomer"/>
+        <!--如果流程中触发了cancel事件，则流程流向id为cancel的流程-->
+        <transition on="cancel" to="cancel"/>
+    </view-state>
+
+    <!--行为流程lookupCustomer，即查找客户流程-->
+    <action-state id="lookupCustomer">
+        <!--执行表达式，调用查找客户的方法并把结果保存到变量order的customer字段中-->
+        <evaluate result="order.customer" expression="pizzaFlowActions.lookupCustomer(requestParameters.phoneNumber)"/>
+        <!--如果流程中触发了CustomerNotFoundException异常，则流程流向id为registrationForm的流程-->
+        <transition on-exception="top.jinhaoplus.pizza.service.exception.CustomerNotFoundException"
+                    to="registrationForm"/>
+        <!--流程正常则直接流向id为customerReady的流程-->
+        <transition to="customerReady"/>
+    </action-state>
+
+    <!--视图流程registrationForm，即客户注册流程，传往表单的model是order变量-->
+    <view-state id="registrationForm" model="order" popup="true">
+        <on-entry>
+            <!--执行表达式，将order变量customer字段的phoneNumber字段设置为requestParameters变量的phoneNumber字段-->
+            <evaluate expression="order.customer.phoneNumber = requestParameters.phoneNumber"/>
+        </on-entry>
+        <!--如果流程中触发了submit事件，则流程流向id为checkDeliveryArea的流程-->
+        <transition on="submit" to="checkDeliveryArea"/>
+        <!--如果流程中触发了cancel事件，则流程流向id为cancel的流程-->
+        <transition on="cancel" to="cancel"/>
+    </view-state>
+
+    <!--决策流程checkDeliveryArea，即配送地址监测流程-->
+    <decision-state id="checkDeliveryArea">
+        <!--通过test属性定义的条件调用监测配送地址方法，传入参数为order变量customer字段的zipCode字段
+            条件为true则流向then属性定义的addCustomer流程
+            条件为false则流向else属性定义的deliveryWarning流程-->
+        <if test="pizzaFlowActions.checkDeliveryArea(order.customer.zipCode)"
+            then="addCustomer"
+            else="deliveryWarning"/>
+    </decision-state>
+
+    <!--视图流程deliveryWarning，即配送地址警告流程-->
+    <view-state id="deliveryWarning">
+        <!--如果流程中触发了accept事件，则流程流向id为addCustomer的流程-->
+        <transition on="accept" to="addCustomer"/>
+        <!--如果流程中触发了cancel事件，则流程流向id为cancel的流程-->
+        <transition on="cancel" to="cancel"/>
+    </view-state>
+
+    <!--行为流程addCustomer，即客户添加流程-->
+    <action-state id="addCustomer">
+        <!--执行表达式，调用客户添加方法，参数为order变量的customer字段-->
+        <evaluate expression="pizzaFlowActions.addCustomer(order.customer)"/>
+        <!--流程正常则直接流向id为customerReady的流程-->
+        <transition to="customerReady"/>
+    </action-state>
+
+    <!-- End state -->
+    <!--结束流程cancel，即客户取消流程-->
+    <!--流程结束时id不仅说明了流程的Id，更重要的是会触发一个和流程Id同名的事件，如id="cancel"会触发一个cancel事件-->
+    <end-state id="cancel"/>
+    <!--结束流程customerReady，即客户就绪流程-->
+    <end-state id="customerReady"/>
+</flow>

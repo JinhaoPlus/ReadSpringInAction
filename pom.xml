@@ -29,11 +29,12 @@
         <module>Chap7.1_SpringWeb_xmlconfig</module>
         <module>Chap7.2_SpringWeb_javaconfig</module>
         <module>Chap7.3_SpringWeb_advanced</module>
+        <module>Chap8_SpringWebFlow</module>
     </modules>
 
     <properties>
         <jdk.version>1.8</jdk.version>
-        <spring.version>4.2.5.RELEASE</spring.version>
+        <spring.version>4.0.7.RELEASE</spring.version>
     </properties>
 
     <dependencies>
@@ -105,6 +106,12 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.14</version>
         </dependency>
 
     </dependencies>
