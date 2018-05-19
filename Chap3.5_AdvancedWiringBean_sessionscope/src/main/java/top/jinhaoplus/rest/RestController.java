@@ -17,8 +17,8 @@ public class RestController {
     public String cart() {
         System.out.println(storeService.getShoppingCart());
         // 两个http会话得到的ShoppingCart是不一样的，即Spring获得的shoppingCart这个bean是session级别的
-        // top.jinhaoplus.model.ShoppingCart@c5fc08e
-        // top.jinhaoplus.model.ShoppingCart@20e39137
+        // top.jinhaoplus.model.ShoppingCart@66a7e031
+        // top.jinhaoplus.model.ShoppingCart@144b36af
         return "ok";
     }
 }

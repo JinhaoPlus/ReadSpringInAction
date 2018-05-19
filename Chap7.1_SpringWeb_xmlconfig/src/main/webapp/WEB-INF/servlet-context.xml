@@ -10,18 +10,27 @@
     http://www.springframework.org/schema/context 
     http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <!--开启注解驱动的代码配置-->
     <mvc:annotation-driven/>
 
+    <!--使用默认的servlet而非来Dispatcher Servlet处理静态资源-->
     <mvc:default-servlet-handler/>
 
+    <!--说明静态资源文件的映射路径，url中的/resources/**请求都将会映射到/resources/路径下寻找相应的资源-->
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
+    <!--以下的例子更清楚一些，分类地把各种资源做了存储：
+        url中的/styles/**请求都将会映射到/resources/css/路径下寻找相应的样式资源，
+        url中的/javascript/**请求都将会映射到/resources/js/路径下寻找相应的javascript资源-->
+    <!--<mvc:resources mapping="/styles/**" location="/resources/css/"/>-->
+    <!--<mvc:resources mapping="/javascript/**" location="/resources/js/"/>-->
+
+    <!--说明web上下文的扫描路径-->
     <context:component-scan base-package="top.jinhaoplus.spittr.web"/>
 
-    <beans:bean
-            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <!--说明视图解析起的配置：使用内部资源解析器（JSP）-->
+    <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <beans:property name="prefix" value="/WEB-INF/views/"/>
         <beans:property name="suffix" value=".jsp"/>
     </beans:bean>
-
-    <mvc:resources mapping="/resources/**" location="/resources/"/>
 
 </beans:beans>

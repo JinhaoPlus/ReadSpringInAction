@@ -11,7 +11,22 @@
 
     <artifactId>Chap3.1_AdvancedWiringBean_profiles</artifactId>
 
+    <properties>
+        <spring.version>4.2.5.RELEASE</spring.version>
+    </properties>
+
     <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>

@@ -11,7 +11,22 @@
     <artifactId>Chap7.3_SpringWeb_advanced</artifactId>
     <packaging>war</packaging>
     <name>Chap7.3_SpringWeb_advanced Maven Webapp</name>
+
+    <properties>
+        <spring.version>4.2.5.RELEASE</spring.version>
+    </properties>
+
     <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>

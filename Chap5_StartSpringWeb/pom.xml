@@ -11,7 +11,28 @@
     <artifactId>Chap5_StartSpringWeb</artifactId>
     <packaging>war</packaging>
     <name>Chap5_StartSpringWeb Maven Webapp</name>
+
+    <properties>
+        <spring.version>4.2.5.RELEASE</spring.version>
+    </properties>
+
     <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
@@ -49,7 +70,6 @@
             <artifactId>h2</artifactId>
             <version>1.4.182</version>
         </dependency>
-
     </dependencies>
 
 
